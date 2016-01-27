@@ -47,4 +47,11 @@ class NeuralNetwork:
         dJdW2 = np.dot(x.T, delta3)
         delta2 = np.dot(delta3, self.W2.T) * self.sigmoidPrime(self.z2)
         dJdW1 = np.dot(x.T, delta2)
-        return dJdW1,dJdW2,dJdW1
+        return dJdW1, dJdW2, dJdW3
+
+    def trainnetowrk(self, x, y, numberofiterations):
+        for iteration in range(numberofiterations):
+            adjustment1, adjustment2, adjustment3 = self.costprime(x, y)
+            self.W1 = adjustment1
+            self.W2 = adjustment2
+            self.W3 = adjustment3
