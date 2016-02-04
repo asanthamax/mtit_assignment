@@ -1,0 +1,7 @@
+hours studied	hours slept		   hours exercised		Marks
+8				4					2					87
+7				6					1					70
+6				8					1					68
+4               5                   2                   52
+9               4                   3                   86
+7               5                   2                   75
