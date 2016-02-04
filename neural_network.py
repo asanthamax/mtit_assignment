@@ -15,6 +15,7 @@ class NeuralNetwork:
         #define weights
         self.W1 = np.random.randn(self.inputLayerSize, self.hiddenLayerSize)
         self.W2 = np.random.randn(self.hiddenLayerSize, self.outputLayerSize)
+        self.output = []
 
     def forward(self, X):
         #Propogate inputs though network
@@ -43,6 +44,7 @@ class NeuralNetwork:
     def costFunction(self, X, y):
         #Compute cost for given X,y, use weights already stored in class.
         self.yHat = self.forward(X)
+        self.output.append(self.yHat)
         J = 0.5*sum((y-self.yHat)**2)
         return J
 

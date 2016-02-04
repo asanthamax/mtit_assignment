@@ -17,13 +17,16 @@ class TrainMe:
     #here is the call back function wich iteratively call and append cost value to J array to plot the graph during training the network
     def callbackF(self, params):
         self.N.setParams(params)
+        self.parse = self.parse + 1
         self.J.append(self.N.costFunction(self.X, self.y))
-
+        self.iteration.append(self.parse)
 
     def trainnetwork(self, x, y):
         self.X = x
         self.y = y
         self.J = []
+        self.parse = 0
+        self.iteration = []
         params0 = self.N.getParams()
         options = {'maxiter': 200, 'disp': True}#here we use SLSQP algorithm included in scipy optimize library
         res = optimize.minimize(self.costFunctionWrapper, params0, jac=True, method='SLSQP', args=(x, y), options=options, callback=self.callbackF)

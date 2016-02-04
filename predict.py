@@ -1,4 +1,8 @@
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
 import neural_network as nn
+from matplotlib.collections import PolyCollection
+from matplotlib.colors import colorConverter
 import trainme as t
 import numpy as np
 __author__ = 'asantha'
@@ -32,11 +36,27 @@ d = d/100
 #send the arrays to train network and graph the output
 T = t.TrainMe(NN)
 T.trainnetwork(c, d)
-plt.plot(T.J)
-plt.grid(1)
+
+
+z=[]
+xvals = []
+yvals = []
+print(len(NN.output))
+print(NN.output[0])
+for i in range(len(T.J)):
+    xvals.append(T.iteration[i])
+    yvals.append(T.J[i][0])
+    z.append(NN.output[i][0][0])
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_wireframe(xvals, yvals, z)
+ax.set_xlabel('Iterations')
+ax.set_ylabel('Cost')
+ax.set_zlabel('Score')
+
+
 plt.title("Marks Analysis")
-plt.ylabel("Cost")
-plt.xlabel("Iterations")
 plt.show()
 
 #now after we train our network we will test with a test inputs
